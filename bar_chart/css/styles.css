@@ -1,0 +1,42 @@
+body *{
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  h1 {
+    font-weight: 900;
+  }
+  
+  body {
+    background-color: rgba(0, 204, 255, 0.798);
+  }
+  
+  .page {
+    width: 850px;
+    background-color: rgba(255, 255, 255, 0.901);
+    margin: auto;
+    padding: 50px;
+    padding-top: 35px;
+  }
+
+  .pure-g {
+    margin-bottom: 10px;
+  }
+
+  .pure-u-1-2 {
+    margin-top: 30px;
+    height: 20vw;
+}
+
+.pure-u-1-2 img {
+  width: 30vw;
+  height: 30vw;
+}
+
+#vis1 {
+  width: 30vw
+}
+
+#vis2 {
+  width: 20%;
+  height: 20%
+}
