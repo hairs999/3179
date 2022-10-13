@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 50,
+  "width": 100,
   "height": 25,
   "title": "Gender of athletes in different sports",
   "data": {
