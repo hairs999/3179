@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 400,
+  "title": "Ages of athletes per sport",
+  "data": {
+    "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/data/Athletes_compete.csv",
+    "format": {"type": "csv"}
+  },
+  "params": [
+    {
+      "name": "Discipline_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "3x3 Basketball",
+          "Archery",
+          "Artistic Gymnastics",
+          "Artistic Swimming",
+          "Athletics",
+          "Badminton",
+          "Baseball/Softball",
+          "Basketball",
+          "Beach Volleyball",
+          "Boxing",
+          "Canoe Slalom",
+          "Canoe Sprint",
+          "Cycling BMX Freestyle",
+          "Cycling Mountain Bike",
+          "Cycling Road",
+          "Cycling Track",
+          "Diving",
+          "Equestrian",
+          "Fencing",
+          "Football",
+          "Golf",
+          "Handball",
+          "Hockey",
+          "Judo",
+          "Karate",
+          "'Marathon Swimming",
+          "Modern Pentathlon",
+          "'Rhythmic Gymnastics",
+          "Rowing",
+          "Rugby Sevens",
+          "Sailing",
+          "Shooting",
+          "Skateboarding",
+          "Sport Climbing",
+          "Surfing",
+          "Swimming",
+          "Table Tennis",
+          "Taekwondo",
+          "Tennis",
+          "Trampoline Gymnastics",
+          "Triathlon",
+          "Volleyball",
+          "Water Polo",
+          "Weightlifting",
+          "Wrestling"
+        ],
+        "labels": ["Show All"]
+      }
+    }
+  ],
+  "transform": [
+    {
+      "lookup": "Name2",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/data/individuals_clean.csv"
+        },
+        "key": "name",
+        "fields": [
+          "countryOfBirth",
+          "gender",
+          "occupation",
+          "placeOfBirth",
+          "age"
+        ]
+      }
+    },
+    {
+      "filter": "Discipline_selection == null || datum.Discipline == Discipline_selection"
+    }
+  ],
+  "mark": "boxplot",
+  "encoding": {
+    "x": {"field": "Discipline"},
+    "y": {"field": "age", "type": "quantitative"},
+    "tooltip": [{"field": "Discipline"}, {"field": "age", "title": "Age"}]
+  },
+  "config": {}
+}

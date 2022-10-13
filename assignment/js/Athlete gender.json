@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 350,
+  "height": 300,
+  "title": "Gender of athletes in different sports",
+  "data": {
+    "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/data/Athletes_compete.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "lookup": "Name2",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/data/individuals_clean.csv"
+        },
+        "key": "name",
+        "fields": ["gender"]
+      }
+    },
+    {
+      "filter": {
+        "field": "Discipline",
+        "oneOf": [
+          "Artistic Swimming",
+          "Baseball/Softball",
+          "Basketball",
+          "Football",
+          "Handball",
+          "Hockey",
+          "Rugby Sevens",
+          "Volleyball",
+          "Water Polo"
+        ]
+      }
+    },
+    {"filter": {"field": "gender", "oneOf": ["MALE", "FEMALE"]}}
+  ],
+  "encoding": {
+    "x": {
+      "field": "gender",
+      "aggregate": "count",
+      "title": "Number of athletes",
+      "scale": {"domain": [0, 350]}
+    },
+    "y": {
+      "field": "Discipline",
+      "type": "nominal",
+      "axis": {"offset": 5, "ticks": false, "minExtent": 70, "domain": false}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "point", "filled": true},
+      "encoding": {
+        "color": {
+          "field": "gender",
+          "type": "nominal",
+          "scale": {
+            "domain": ["MALE", "FEMALE"],
+            "range": ["#003d80", "#FDB44E"]
+          },
+          "title": "Gender"
+        },
+        "size": {"value": 100},
+        "opacity": {"value": 1},
+        "tooltip": [
+          {"field": "__count", "title": "Number of athletes"},
+          {"field": "gender"}
+        ]
+      }
+    },
+    {
+      "mark": "line",
+      "encoding": {
+        "y": {"field": "Discipline", "type": "nominal"},
+        "x": {"field": "gender", "aggregate": "mean"},
+        "color": {"value": "#db646f"}
+      }
+    }
+  ],
+  "config": {}
+}
