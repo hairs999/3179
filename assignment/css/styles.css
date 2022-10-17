@@ -1,0 +1,98 @@
+body *{
+    font-family: 'Open Sans', sans-serif;
+  }
+
+.small_text{
+  font-size: 12px;
+}
+
+.gold {
+  color: #D4AF37;
+  font-weight: 1000;
+}
+
+.silver {
+  color: silver;
+  font-weight: 1000;
+}
+
+.bronze {
+  color: #A97142;
+  font-weight: 1000;
+}
+
+.male {
+  color: #003d80;
+  font-weight: 1000;
+}
+
+.female {
+  color: #FDB44E;
+  font-weight: 1000;
+}
+
+.boxing {
+  color: red;
+  font-weight: 1000;
+}
+
+.athletics {
+  color: orange;
+  font-weight: 1000;
+}
+
+#text_div {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+  }
+
+  h2 {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  body {
+    background-color: rgba(0, 204, 255, 0.798);
+  }
+  
+  .page {
+    width: 1000px;
+    background-color: rgba(255, 255, 255, 0.901);
+    margin: auto;
+    padding: 50px;
+    padding-top: 35px;
+  }
+
+  .pure-g {
+    margin-bottom: 10px;
+  }
+
+  .pure-u-1-2 {
+    margin-top: 20px;
+    height: 20vw;
+}
+
+  .pure-u-1-2 {
+    margin-top: 20px;
+    height: 20vw;
+}
+
+.pure-u-1-2 img {
+  width: 400px;
+}
+
+#vis1 {
+  width: 30vw;
+}
+
+#vis2 {
+  width: 20%;
+  height: 20%;
+}
+#vis3 {
+  width: 20vw;
+}

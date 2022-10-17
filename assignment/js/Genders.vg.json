@@ -1,0 +1,233 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "transparent",
+  "data": {
+    "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/data/Athletes_compete.csv",
+    "format": {"type": "csv"}
+  },
+  "params": [
+    {
+      "name": "Gender",
+      "bind": {
+        "input": "select",
+        "options": [null, "MALE", "FEMALE"],
+        "labels": ["Show All"],
+        "name": "Gender: "
+      }
+    }
+  ],
+  "hconcat": [
+    {
+      "width": 350,
+      "height": 200,
+      "title": "Gender of Athletes in Different Sports",
+      "transform": [
+        {
+          "lookup": "Name2",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/data/individuals_clean.csv"
+            },
+            "key": "name",
+            "fields": ["gender"]
+          }
+        },
+        {
+          "filter": {
+            "field": "Discipline",
+            "oneOf": [
+              "Artistic Swimming",
+              "Baseball/Softball",
+              "Basketball",
+              "Football",
+              "Handball",
+              "Hockey",
+              "Rugby Sevens",
+              "Volleyball",
+              "Water Polo"
+            ]
+          }
+        },
+        {"filter": "Gender == null || datum.gender == Gender"},
+        {"filter": {"field": "gender", "oneOf": ["MALE", "FEMALE"]}},
+        {
+          "aggregate": [
+            {"op": "count", "field": "gender", "as": "gender_count"}
+          ],
+          "groupby": ["gender", "Discipline"]
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "gender_count",
+          "type": "quantitative",
+          "title": "Number of Athletes",
+          "scale": {"domain": [0, 350]},
+          "axis": {"grid": false, "ticks": true}
+        },
+        "y": {
+          "field": "Discipline",
+          "type": "nominal",
+          "axis": {"ticks": true, "domain": false, "grid": false}
+        }
+      },
+      "layer": [
+        {
+          "mark": "line",
+          "encoding": {
+            "detail": {"field": "Discipline", "type": "nominal"},
+            "color": {"value": "#7F7967"}
+          }
+        },
+        {
+          "params": [
+            {
+              "name": "gender_highlight",
+              "select": {"type": "point", "fields": ["gender"]},
+              "bind": "legend"
+            }
+          ],
+          "mark": {"type": "point", "filled": true},
+          "encoding": {
+            "color": {
+              "field": "gender",
+              "type": "nominal",
+              "scale": {
+                "domain": ["MALE", "FEMALE"],
+                "range": ["#003d80", "#FDB44E"]
+              },
+              "title": "Gender"
+            },
+            "size": {"value": 100},
+            "opacity": {
+              "condition": {"param": "gender_highlight", "value": 1},
+              "value": 0.4
+            },
+            "tooltip": [
+              {"field": "gender", "title": "Gender"},
+              {"field": "gender_count", "title": "Number of Athletes"}
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "aggregate": [{"op": "count", "as": "athleteNo"}],
+              "groupby": ["Discipline"]
+            },
+            {
+              "window": [{"op": "rank", "as": "ranking"}],
+              "sort": [{"field": "athleteNo", "order": "descending"}]
+            },
+            {"filter": "datum.ranking == 1"},
+            {
+              "calculate": "'The largest number of; athletes is: ' + datum['athleteNo']",
+              "as": "text_annotation_raw"
+            },
+            {
+              "calculate": "split(datum.text_annotation_raw,';')",
+              "as": "text_annotation"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "middle",
+            "dx": 0,
+            "dy": 0,
+            "fontSize": 11.5,
+            "fontStyle": "italic"
+          },
+          "encoding": {
+            "text": {"field": "text_annotation"},
+            "color": {"value": "black"}
+          }
+        }
+      ]
+    },
+    {
+      "width": 350,
+      "height": 200,
+      "title": "Gender of Coaches in Different Sports",
+      "data": {
+        "url": "https://raw.githubusercontent.com/hairs999/3179/main/bar_chart/coaches_by_genders_clean.csv",
+        "format": {"type": "csv"}
+      },
+      "transform": [{"filter": "Gender == null || datum.gender == Gender"}],
+      "encoding": {
+        "x": {
+          "aggregate": "sum",
+          "field": "Number of coaches",
+          "title": "Number of Coaches",
+          "axis": {"grid": false, "ticks": true}
+        },
+        "y": {
+          "field": "Discipline",
+          "type": "nominal",
+          "axis": {"grid": false, "ticks": true}
+        }
+      },
+      "layer": [
+        {
+          "mark": "bar",
+          "encoding": {
+            "color": {
+              "field": "gender",
+              "type": "nominal",
+              "scale": {
+                "domain": ["MALE", "FEMALE"],
+                "range": ["#003d80", "#FDB44E"]
+              },
+              "title": "Gender"
+            },
+            "opacity": {
+              "condition": {"param": "gender_highlight", "value": 1},
+              "value": 0.4
+            },
+            "tooltip": [
+              {"field": "gender", "title": "Gender"},
+              {"field": "Number of coaches", "title": "Number of Coaches"}
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "aggregate": [
+                {"op": "sum", "field": "Number of coaches", "as": "coachNo"}
+              ],
+              "groupby": ["Discipline"]
+            },
+            {
+              "window": [{"op": "rank", "as": "ranking2"}],
+              "sort": [{"field": "coachNo", "order": "descending"}]
+            },
+            {"filter": "datum.ranking2 == 1"},
+            {
+              "calculate": "'The largest number of; coaches is: ' + datum['coachNo']",
+              "as": "text_annotation_raw1"
+            },
+            {
+              "calculate": "split(datum.text_annotation_raw1,';')",
+              "as": "text_annotation1"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "middle",
+            "dx": 300,
+            "dy": -27,
+            "fontSize": 11.5,
+            "fontStyle": "italic"
+          },
+          "encoding": {
+            "text": {"field": "text_annotation1"},
+            "color": {"value": "black"}
+          }
+        }
+      ]
+    }
+  ],
+  "config": {}
+}

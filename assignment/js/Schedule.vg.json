@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 300,
+  "height": 200,
+  "background": "transparent",
+  "title": "Olympic Schedule",
+  "data": {
+    "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/data/scheduling_clean.csv",
+    "format": {"type": "csv", "parse": {"competitionDate": "utc:'%e/%m/%Y'"}}
+  },
+  "params": [{"name": "hover", "select": {"type": "point", "on": "mouseover"}}],
+  "transform": [
+    {
+      "aggregate": [{"op": "count", "field": "Hour", "as": "hour_count"}],
+      "groupby": ["competitionDate", "Hour"]
+    },
+    {"calculate": "datum.Hour*1", "as": "hour_new"},
+    {"calculate": "datum['Hour']+':00'", "as": "tooltip2"}
+  ],
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "hour_new",
+      "type": "ordinal",
+      "title": "Hour",
+      "axis": {"grid": false}
+    },
+    "y": {
+      "field": "competitionDate",
+      "type": "temporal",
+      "timeUnit": "utcmonthdate",
+      "sort": "descending",
+      "title": "Date",
+      "axis": {"grid": false}
+    },
+    "color": {
+      "field": "hour_count",
+      "type": "quantitative",
+      "title": "Number of Events",
+      "scale": {"scheme": "yelloworangebrown"}
+    },
+    "order": {"field": "medalOrder"},
+    "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.3},
+    "tooltip": [
+      {"field": "competitionDate", "timeUnit": "utcmonthdate", "title": "Date"},
+      {"field": "tooltip2", "title": "Hour"},
+      {"field": "hour_count", "title": "Number of activities"}
+    ]
+  },
+  "config": {}
+}

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 400,
+  "background": "transparent",
+  "title": "Ages of Athletes per Sport",
+  "data": {
+    "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/data/Athletes_compete.csv",
+    "format": {"type": "csv"}
+  },
+  "params": [
+    {
+      "name": "Discipline_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Yes",
+          "Combat",
+          "Endurance",
+          "Individual",
+          "Performance",
+          "Race",
+          "Racket Sport",
+          "Team",
+          "Aquatics",
+          "Basketball",
+          "Canoeing/Kayaking",
+          "Cycling",
+          "Gymnastics",
+          "Volleyball"
+        ],
+        "labels": ["Show All", "New"],
+        "name": "Sport type: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "lookup": "Name2",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/data/individuals_clean.csv"
+        },
+        "key": "name",
+        "fields": [
+          "countryOfBirth",
+          "gender",
+          "occupation",
+          "placeOfBirth",
+          "age"
+        ]
+      }
+    },
+    {
+      "lookup": "Discipline",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/data/sport_category.csv"
+        },
+        "key": "Discipline",
+        "fields": ["overallSport", "Category", "New"]
+      }
+    },
+    {
+      "filter": "Discipline_selection == null || datum.overallSport == Discipline_selection || datum.Category == Discipline_selection|| datum.New == Discipline_selection"
+    }
+  ],
+"layer": [{
+  "mark": "boxplot",
+  "encoding": {
+    "x": {"field": "Discipline"},
+    "y": {"field": "age", "type": "quantitative", "title": "Age"},
+    "color": {"field": "Discipline", "scale": {"range": ["grey"]}, "legend": null},
+    "tooltip": [{"field": "Discipline"}, {"field": "age", "title": "Age"}]
+  }},
+  {
+    "transform": [{"aggregate": [{"op": "mean", "field": "age", "as": "meanage"}]},
+    {"calculate": "round(datum['meanage'])", "as": "cleanage"},
+    {"calculate": "'Mean age: '+datum['cleanage']", "as": "text_an"}
+    
+    ],
+    
+    "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": 75,
+        "dy": -150,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "text_an"},
+        "color": {"value": "black"}
+      }
+    }
+    ]
+}

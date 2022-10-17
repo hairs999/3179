@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tokyo 2020 Olympics</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&Roberto&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+
+ 
+
+
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="text_div">
+        <h1>Tokyo 2020 Olympics</h1>
+        <p>The Tokyo Olympic games was a multi-sport event featuring athletes from around the globe. The games was held from the 23rd of July 2021 to the 8th of August 2021, with some events starting from the 21st of July. It was held in 2021 due to the Covid-19 pandemic. Many new sports and events were introduced, such as surfing, skateboarding, BMX freestyle, and mixed team events.</p>
+      </div>
+      </div>
+      <div class="pure-u-1-2">
+        <img src="/images/olympic_rings_png.png">
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="text_div">
+        <h2>Athletes and Coaches</h2>
+      </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="text_div">
+        <h3>Gender Equality</h3>
+        <p>Gender equality was a big theme of the Tokyo Olympics, trying to have as close to an equal number of <span class='male'>men</span> and <span class='female'>women</span> competing as possible. This was the first Olympic games to have <span class='male'>men</span> and <span class='female'>women</span> competing across all NOCs. While there are less teams of <span class='male'>men</span> than <span class='female'>women</span> in sports like baseball/softball, football and water polo, this is balanced by there being no <span class='male'>male</span> artistic swimming teams.</p>
+      </div>
+      </div>
+      <div class="pure-u-1-2">
+        <img src="/images/mixed_gender.jpeg">
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+  <!-- pure grid group -->
+  <div class="pure-g">
+    <div class="pure-u-1-1">
+      <div id="vis2"></div>
+    </div>
+  </div>
+  <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <img src="/images/female-coach.jpeg">
+      </div>
+      <div class="pure-u-1-2">
+        <div id="text_div">
+        <p>While there was relative gender equality for the athletes, the same cannot not be said for the coaches, with just 24.8% of coaches being <span class='female'>women</span>. 
+          Coaches are often former competitors of the sport. <span class='female'>Women</span> have historically not had the same opportunity to compete in sports as <span class='male'>men</span>, so it makes sense that the gender balance is off. The only sport where there were more <span class='female'>female</span> than <span class='male'>male</span> coaches was artistic swimming, which is still only competed by <span class='female'>women</span> in the Olympics. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+    
+  <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="text_div">
+        <h3>Athlete Ages</h3>
+        <p>The ages of athletes greatly varies across the sports. In general, most athletes in the Olympics are between 15 and 45, with a mean age of 27. Sports like equestrian and shooting tend to attract an older age group, as they are much less physically intensive. The oldest athlete is aged 66 and does equestrian. 
+          Sports like gymnastics and BMX skew lower in age groups. Gymnastics requires a lot of flexibility, which tends to decrease in age. BMX is a more extreme sport, which attracts a younger crowd. 
+          
+          Skateboarding and table tennis both have very young athletes, at age 12. This is due to a lower age limit for that specific sport. Every sport can set their own age limit, which typically is between 12 and 18. </p>
+        </div>
+        </div>
+      <div class="pure-u-1-2">
+        <img src="/images/skybrown.jpeg">
+      </div>
+    </div>
+    <!-- end pure grid group -->
+<!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis5"></div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div id="text_div">
+        <h2>Medals</h2>
+        <p>There are many factors that go into whether a country wins a medal. One factor is the amount of athletes competing. Usually, the more athletes, the more medals. The United States of America has the most athletes competing(615) and the most medals(113). However, Canada has a large number of athletes competing(368), but only 24 medals. Comparatively, the Netherlands sent 274 athletes and got 36 medals.  </p>
+        </div>
+        </div>
+        <div class="pure-u-1-2">
+        <div id="text_div">
+        <p>Some countries choose to primarily put resources into specific sports, which leads to them winning more medals. Of the 4 medals the Phillipines won, 3 of them were for <span class='boxing'>boxing</span>. Of the 14 medals Poland won, 9 were for <span class='athletics'>athletics</span>. Of course, it is easier to win medals in sports where there are more to give away. 21 countries won the most medals for <span class='athletics'>athletics</span>, which gives out 144 medals.  
+          Perhaps the countries that would like to improve their medal tally would do well to focus resources in those sports that give out more medals </p>
+        
+          <p><span class='small_text'> Note that success is defined by the number of medals, with tie breakers coming based on the value of the medals. In the case where two or more sports had the same number and style of medals, the sport with the least amount of medals to give away was chosen.</span>
+        </p>
+        </div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+  <!-- pure grid group -->
+  <div class="pure-g">
+    <div class="pure-u-1-1">
+      <div id="vis1"></div>
+    </div>
+  <!-- end pure grid group -->
+
+  <!-- pure grid group -->
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <div id="text_div">
+      <h2>Scheduling</h1>
+      <p>A lot of care goes into the scheduling for the Olympics, trying to ensure there is an even spread of events across the days. Most sports stayed between the hours of 9:00am-11:00pm, keeping in the normal waking hours. However, certain endurance events, such as triathlon, started much earlier, in order to be finished before temperatures were too hot. Scheduling for some outdoor events had to be changed, as there was inclement weather on certain days. 
+        Overall, more events were scheduled on the earlier days, between 10:00am-4:00pm</p>
+        <p2><span class='small_text'>Note that 24:00 represents 12:00am the next day</span></p2>
+      </div>
+    </div>
+    <div class="pure-u-1-2">
+      <div id="vis6"></div>
+    </div>
+  </div>
+  <!-- end pure grid group -->
+  
+<!-- pure grid group -->
+<div class="pure-g">
+  <div class="pure-u-1-2">
+    <div id="vis3"></div>
+  </div>
+  <div class="pure-u-1-2">
+    <div id="text_div">
+    <p>There were more medal events scheduled in the later days. This was because many tournament-style sports would play matches every day, with the medals being awarded on one of the final days. </p>
+      <p2><span class='small_text'>Note that the ‘medal’ means the highest medal awarded in that session. In <span class='gold'> gold </span> medal events, <span class='silver'> silver</span> and <span class='bronze'>bronze</span> were also awarded.</span> </p2>
+    </div>
+  </div>
+</div>
+<!-- end pure grid group -->
+
+</div> <!-- end page -->
+
+  <script type="text/javascript">
+    var specVis1 = "./js/maps.json";
+    var specVis2 = "./js/Genders.vg.json";
+    var specVis3 = "./js/Schedule.vg.json";
+    var specVis5 = "./js/boxplot.vg.json";
+    var specVis6 = "./js/Area.vg.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false });
+    vegaEmbed('#vis2', specVis2, { "actions": false });
+    vegaEmbed('#vis3', specVis3, { "actions": false });
+    vegaEmbed('#vis5', specVis5, { "actions": false });
+    vegaEmbed('#vis6', specVis6, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+  </script>
+</body>
+
+</html>
