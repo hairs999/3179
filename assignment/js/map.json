@@ -190,7 +190,7 @@
         },
         {
           "data": {
-            "url": "https://raw.githubusercontent.com/JiazhouLiu/FIT3179/main/VegaLite/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+            "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/js/ne_110m%20(2).json",
             "format": {
               "type": "topojson",
               "feature": "ne_110m_admin_0_countries"
