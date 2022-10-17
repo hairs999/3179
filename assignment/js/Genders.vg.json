@@ -150,7 +150,7 @@
       "height": 200,
       "title": "Gender of Coaches in Different Sports",
       "data": {
-        "url": "https://raw.githubusercontent.com/hairs999/3179/main/bar_chart/coaches_by_genders_clean.csv",
+        "url": "https://raw.githubusercontent.com/hairs999/3179/main/assignment/coaches_by_genders_clean.csv",
         "format": {"type": "csv"}
       },
       "transform": [{"filter": "Gender == null || datum.gender == Gender"}],
